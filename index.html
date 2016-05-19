@@ -1,0 +1,35 @@
+<html>
+<head>
+    <title>Gantt Chart Demo</title>
+    <script src="ganttchart.js"></script>
+    <style>
+    html, body{
+        height: 100%;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+    div{
+        display: block;
+    }
+    </style>
+</head>
+<body>
+    <div id="gantt-chart">
+    </div>
+    <script>
+    var myChart = new GanttChart('gantt-chart', [
+        {
+            startDate: '2016 January 10',
+            endDate: '2016 February 1'
+        },
+        {
+            startDate: '2016 January 10',
+            endDate: '2016 March 14'
+        },
+    ]);
+    myChart.process();
+    myChart.render();
+    </script>
+</body>
+</html>
