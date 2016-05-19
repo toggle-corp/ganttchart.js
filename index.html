@@ -11,8 +11,15 @@
     }
     div{
         display: block;
+        width: 100%;
+    }
+    #gantt-chart{
+        margin-top: 50px;
+        width: 50%;
+        margin-left: 50px;
     }
     </style>
+    <link rel="stylesheet" type="text/css" href="ganttchart.css">
 </head>
 <body>
     <div id="gantt-chart">
@@ -20,13 +27,35 @@
     <script>
     var myChart = new GanttChart('gantt-chart', [
         {
-            startDate: '2016 January 10',
-            endDate: '2016 February 1'
+        task:   "Basic window",
+        startDate:  "2016 May 15",
+        endDate:    "2016 May 21"
         },
         {
-            startDate: '2016 January 10',
-            endDate: '2016 March 14'
+            task:   "Menu, Toolbar, Tool window",
+            startDate:  "2016 May 22",
+            endDate:    "2016 June 30"
         },
+        {
+            task:   "Render window",
+            startDate:  "2016 May 22",
+            endDate:    "2016 May 25"
+        },
+        {
+            task:   "Miscelleneous UI",
+            startDate:  "2016 July 1",
+            endDate:    "2016 July 30"
+        },
+        {
+            task:   "Lens blur, Depth map",
+            startDate:  "2016 May 8",
+            endDate:    "2016 May 14"
+        },
+        {
+            task:   "Basic point cloud loading",
+            startDate:  "2016 May 8",
+            endDate:    "2016 May 14"
+        }
     ]);
     myChart.process();
     myChart.render();

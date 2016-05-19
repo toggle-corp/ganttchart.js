@@ -22,13 +22,17 @@ GanttChart.prototype.getDays = function(year, month){
 GanttChart.prototype.calculateTotalDays = function(){
     this.totalDays = 0;
     // cycle through all months
-    for(start = this.minDate; start.getTime() < this.maxDate.getTime(); start.setMonth(start.getMonth() + 1)){
+    for(start = new Date(this.minDate); start.getTime() < this.maxDate.getTime(); start.setMonth(start.getMonth() + 1)){
         this.totalDays += this.getDays(start.getYear(), start.getMonth());
     }
 }
 
 GanttChart.prototype.calculatePixelsPerDay = function(){
     this.pixelsPerDay = Math.floor(this.container.offsetWidth/this.totalDays);
+}
+
+GanttChart.prototype.daysBetween = function(startDate, endDate){
+    return Math.floor(Math.abs(endDate.getTime() - startDate.getTime())/(1000*60*60*24));
 }
 
 GanttChart.prototype.process = function(){
@@ -57,4 +61,13 @@ GanttChart.prototype.process = function(){
 
 GanttChart.prototype.render = function(){
     this.calculatePixelsPerDay();
+
+    for( i = 0; i < this.data.length; i++ ){
+        startDate = new Date(this.data[i].startDate);
+        endDate = new Date(this.data[i].endDate);
+
+        this.container.innerHTML += '<div class="time-line" style="width:'+(this.daysBetween(startDate, endDate)+1)*this.pixelsPerDay+'px; margin-left:'+this.daysBetween(this.minDate, startDate)*this.pixelsPerDay+'px"></div>';
+    }
+
+    this.container.style.background = 'repeating-linear-gradient(90deg, #fafafa, #fafafa '+this.pixelsPerDay+'px, #f5f5f5 '+this.pixelsPerDay+'px, #f5f5f5 '+this.pixelsPerDay*2+'px)';
 }
